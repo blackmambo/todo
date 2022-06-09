@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 
 @Component({
   selector: 'app-taskcreate',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskcreateComponent implements OnInit {
 
-  constructor() { }
+  panelOpenState = false;
+
+  taskForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { 
+    this.taskForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
 
   ngOnInit(): void {
+   
+  }
+
+  onSubmit() {
+    alert("test");
   }
 
 }

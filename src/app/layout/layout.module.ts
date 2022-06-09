@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import {MatToolbarModule} from '@angular/material/toolbar';
+
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { LayoutmainComponent } from './layoutmain/layoutmain.component';
 
@@ -14,7 +15,7 @@ import { LayoutmainComponent } from './layoutmain/layoutmain.component';
   imports: [
     CommonModule, 
     RouterModule,
-    MatToolbarModule
+    MatToolbarModule,
   ]
 })
 export class LayoutModule { }

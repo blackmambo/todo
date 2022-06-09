@@ -1,1 +1,44 @@
-<p>taskcreate works!</p>
+<mat-accordion>    
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            Create Task
+        </mat-panel-title>
+        <mat-panel-description>
+          <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+     <form class="form w-10" novalidate="novalidate" id="kt_sign_in_form" [formGroup]="taskForm"  (ngSubmit)="onSubmit()">
+      <div class="example-container">
+
+        
+
+        <mat-form-field>
+          <input matInput placeholder="Task">
+        </mat-form-field>
+      
+        <mat-form-field>
+          <textarea matInput placeholder="Description"></textarea>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-select placeholder="Priority">
+            <mat-option value="option">Low</mat-option>
+            <mat-option value="option">Medirm</mat-option>
+            <mat-option value="option">High</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      
+        <button mat-raised-button color="primary">Create</button>
+
+      
+          
+      </div>
+    </form>
+      
+
+    </mat-expansion-panel>
+  </mat-accordion>
