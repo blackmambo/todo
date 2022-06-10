@@ -10,6 +10,7 @@ import { DtoTask } from 'src/app/shared/dto/dtoTask';
 })
 export class TaskcreateComponent implements OnInit {
 
+  private store = new TaskManagerLocalStorage();
   public tasks: DtoTask[] = [];
  
   panelOpenState = false;
@@ -24,20 +25,23 @@ export class TaskcreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+    this.loadTasks();
+  }
+
+  loadTasks() {
+    this.tasks = this.store.load();
   }
 
   onSubmit() {
-    //alert("test");
-    const store = new TaskManagerLocalStorage();
+    
     const task = new DtoTask();
 
     task.id = Date.now();
     task.name = "test";
     task.priority = "high";
 
-    //this.tasks.push(task);
-    store.create(task);
+    this.store.create(task);
+    this.loadTasks();
     
   }
 

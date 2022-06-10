@@ -21,7 +21,14 @@ export class TaskManagerLocalStorage implements TaskInterface {
     delete(id: number): void {
         throw new Error("Method not implemented.");
     }
-    load(): void {
-        throw new Error("Method not implemented.");
+    load(): DtoTask[] {
+        const data = localStorage.getItem("tasks");
+        let dataObject: DtoTask[] = [];
+
+        if (data != null) {
+            dataObject  = <DtoTask[]>JSON.parse(data);
+        }
+
+        return dataObject;
     }
 }

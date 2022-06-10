@@ -42,3 +42,11 @@
 
     </mat-expansion-panel>
   </mat-accordion>
+
+
+
+  <mat-selection-list #shoes>
+    <mat-list-option *ngFor="let task of tasks">
+      {{task.name}}
+    </mat-list-option>
+  </mat-selection-list>
