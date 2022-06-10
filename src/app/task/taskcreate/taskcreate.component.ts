@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { TaskManagerLocalStorage } from 'src/app/shared/lib/TaskManager';
+import { DtoTask } from 'src/app/shared/dto/dtoTask';
 
 @Component({
   selector: 'app-taskcreate',
@@ -8,6 +10,8 @@ import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 })
 export class TaskcreateComponent implements OnInit {
 
+  public tasks: DtoTask[] = [];
+ 
   panelOpenState = false;
 
   taskForm: FormGroup;
@@ -24,7 +28,17 @@ export class TaskcreateComponent implements OnInit {
   }
 
   onSubmit() {
-    alert("test");
+    //alert("test");
+    const store = new TaskManagerLocalStorage();
+    const task = new DtoTask();
+
+    task.id = Date.now();
+    task.name = "test";
+    task.priority = "high";
+
+    //this.tasks.push(task);
+    store.create(task);
+    
   }
 
 }
