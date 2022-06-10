@@ -2,6 +2,6 @@ import { DtoTask } from "../dto/dtoTask";
 
 export interface TaskInterface {
     create( task: DtoTask): void;
-    delete(id: number): void;
+    update(id: number, status: boolean): void;
     load(): DtoTask[];
   }

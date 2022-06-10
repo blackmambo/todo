@@ -16,18 +16,18 @@
         
 
         <mat-form-field>
-          <input matInput placeholder="Task">
+          <input matInput placeholder="Task" formControlName="name">
         </mat-form-field>
       
         <mat-form-field>
-          <textarea matInput placeholder="Description"></textarea>
+          <textarea matInput placeholder="Description" formControlName="desc"></textarea>
         </mat-form-field>
       
         <mat-form-field>
-          <mat-select placeholder="Priority">
-            <mat-option value="option">Low</mat-option>
-            <mat-option value="option">Medirm</mat-option>
-            <mat-option value="option">High</mat-option>
+          <mat-select placeholder="Priority" formControlName="priority">
+            <mat-option value="Low">Low</mat-option>
+            <mat-option value="Medium">Medium</mat-option>
+            <mat-option value="High">High</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -42,11 +42,20 @@
 
     </mat-expansion-panel>
   </mat-accordion>
+  <br/><br/>
 
+  <mat-card>
+    <p>
 
+      <mat-selection-list #thetasks (selectionChange)="onTaskChange($event)">
+        <mat-list-option *ngFor="let task of tasks" [value] = "task" [selected]="task.status">
+          <div class="{{task.status == true ? 'st' : ''  }}">
+            <span matLine>{{task.priority}} priority</span>
+            <span matLine>{{task.name}}</span>
+            <span matLine><small>{{task.desc}}</small></span>
+          </div>
+        </mat-list-option>
+      </mat-selection-list>
 
-  <mat-selection-list #shoes>
-    <mat-list-option *ngFor="let task of tasks">
-      {{task.name}}
-    </mat-list-option>
-  </mat-selection-list>
+    </p>
+</mat-card>

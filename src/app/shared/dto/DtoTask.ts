@@ -3,4 +3,5 @@ export class DtoTask {
     name!: string;
     desc?:       string;
     priority!: string;
+    status?: boolean;
 }

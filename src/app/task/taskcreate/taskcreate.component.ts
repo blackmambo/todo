@@ -19,8 +19,9 @@ export class TaskcreateComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { 
     this.taskForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      name: ['', Validators.required],
+      desc: ['', Validators.required],
+      priority: ['', Validators.required]
     });
   }
 
@@ -33,16 +34,38 @@ export class TaskcreateComponent implements OnInit {
   }
 
   onSubmit() {
+
+    if (this.taskForm.invalid) {
+     alert("Enter all fields!");
+     return;
+    }
     
     const task = new DtoTask();
 
     task.id = Date.now();
-    task.name = "test";
-    task.priority = "high";
+    task.name = this.taskForm.get('name')?.value;
+    task.desc = this.taskForm.get('desc')?.value;
+    task.priority =  this.taskForm.get('priority')?.value;
+    task.status = false;
 
     this.store.create(task);
+    this.taskForm.reset();
     this.loadTasks();
-    
+    //this is a test of the read and write functions of microsoft
+  }
+
+  onTaskChange(tk: any) {
+    console.log(tk);
+   // console.log(tk.options[0].value.id);
+
+   if (tk.options[0].selected == true) {
+     this.store.update(tk.options[0].value.id, true);
+   } else  {
+    this.store.update(tk.options[0].value.id, false);
+   }
+
+   this.loadTasks();
+
   }
 
 }

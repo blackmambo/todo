@@ -10,7 +10,7 @@ export class TaskManagerLocalStorage implements TaskInterface {
         if (data != null) {
             let dataObject: DtoTask[]  = <DtoTask[]>JSON.parse(data);
             console.log(dataObject);
-            dataObject.push(task);
+            dataObject.unshift(task);
             localStorage.setItem("tasks", JSON.stringify(dataObject));
         } else { 
             let tasks: DtoTask[] = [];
@@ -18,8 +18,22 @@ export class TaskManagerLocalStorage implements TaskInterface {
             localStorage.setItem("tasks", JSON.stringify(tasks));
         }
     }
-    delete(id: number): void {
-        throw new Error("Method not implemented.");
+    update(id: number, status: boolean): void {
+        const data = localStorage.getItem("tasks");
+
+        if (data != null) {
+            let dataObject: DtoTask[]  = <DtoTask[]>JSON.parse(data);
+
+            const newDataObject = dataObject.map(obj => {
+                if (obj.id === id) {
+                  return {...obj, status: status};
+                }
+              
+                return obj;
+              });
+
+            localStorage.setItem("tasks", JSON.stringify(newDataObject));
+        }
     }
     load(): DtoTask[] {
         const data = localStorage.getItem("tasks");
